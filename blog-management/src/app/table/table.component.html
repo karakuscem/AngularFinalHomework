@@ -1,0 +1,12 @@
+<table>
+  <thead>
+    <tr>
+      <th *ngFor="let column of columns">{{ column }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of data">
+      <td *ngFor="let column of getObjectValues(row)">{{ column | uppercase }}</td>
+    </tr>
+  </tbody>
+</table>
