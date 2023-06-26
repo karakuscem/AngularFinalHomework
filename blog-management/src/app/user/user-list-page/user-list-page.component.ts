@@ -8,15 +8,24 @@ import { UserManagementService } from '../user-management.service';
   styleUrls: ['./user-list-page.component.css']
 })
 export class UserListPageComponent {
-  columns: string[] = ['ID', 'USERNAME', 'EMAIL', 'DATE', 'ACTIVE'];
+  columns: string[] = ['ID', 'USERNAME', 'EMAIL', 'DATE', 'ACTIVE', 'EDIT'];
   data: User[] = [];
 
   constructor(private userService: UserManagementService) {
-    if (this.userService.getUsers().length === 0) {
+    this.data = this.userService.getUsers();
+    if (this.data.length === 0) {
       this.userService.setUsers();
-    } else {
       this.data = this.userService.getUsers();
     }
-    console.log(this.data);
+  }
+
+  handleDeleteClick($event: number): void {
+    if (this.data.length === 1)
+      alert('You cannot delete the last user!');
+    else if (confirm('Are you sure you want to delete this user?'))
+    {
+      this.userService.deleteUser(Number($event));
+      this.data = this.userService.getUsers();
+    }
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-table',
@@ -8,8 +8,14 @@ import { Component, Input } from '@angular/core';
 export class TableComponent {
   @Input() columns: string[] = [];
   @Input() data: any[] = [];
+  @Output() onDeleteClick =  new EventEmitter<any>();
 
   getObjectValues(obj: any): any[] {
     return Object.entries(obj).map(([key, value]) => `${value}`);
   }
+
+  handleDeleteClick(id: string): void {
+    this.onDeleteClick.emit(id);
+  }
+
 }

@@ -7,14 +7,13 @@ import { NavComponent } from './nav/nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
 import { TableComponent } from './table/table.component';
-import { UserListPageComponent } from './user/user-list-page/user-list-page.component';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     TableComponent,
-    UserListPageComponent
   ],
   imports: [
     BrowserModule,

@@ -8,7 +8,11 @@ export class UserManagementService {
   private users: User[] = [];
 
   getUsers(): User[] {
-    this.users = JSON.parse(localStorage.getItem('users') || this.setUsers() || '{}');
+    if (localStorage.getItem('users') !== null) {
+      this.users = JSON.parse(localStorage.getItem('users')!);
+    } else {
+      this.setUsers();
+    }
     return this.users;
   }
 
@@ -87,4 +91,10 @@ export class UserManagementService {
     ];
     localStorage.setItem('users', JSON.stringify(this.users));
   }
+
+  deleteUser(id: number): void {
+    this.users = this.users.filter((user) => user.ID !== id);
+    localStorage.setItem('users', JSON.stringify(this.users));
+  }
+
 }

@@ -14,11 +14,10 @@ th
     color: white;
 }
 
-th, td
+th, td, .buttons
 {
     padding: 8px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
 }
 
 tr:nth-child(even)
@@ -29,4 +28,35 @@ tr:nth-child(even)
 tr:nth-child(odd)
 {
     background-color: #fff;
+}
+
+.buttons
+{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.edit-btn
+{
+    background-color: var(--primaryColor);
+    color: white;
+    border-radius: 10px;
+    width: 50px;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-btn
+{
+    background-color: var(--secondaryColor);
+    color: white;
+    border-radius: 10px;
+    width: 50px;
+    border: none;
+    cursor: pointer;
+}
+
+th:last-child
+{
+    text-align: center;
 }
