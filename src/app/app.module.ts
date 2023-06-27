@@ -23,6 +23,6 @@ import { UserModule } from './user/user.module';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [TableComponent]
+  exports: [TableComponent, AppRoutingModule]
 })
 export class AppModule { }

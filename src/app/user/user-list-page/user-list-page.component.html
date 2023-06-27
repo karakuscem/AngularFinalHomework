@@ -1,0 +1,18 @@
+<app-table [data]="data" [columns]="columns" (onDeleteClick)="handleDeleteClick($event)" (onEditClick)="handleEditClick($event)"></app-table>
+<a class="add-btn" [routerLink]="['add']">Add User</a>
+<form class="edit-form" *ngIf="editMode">
+    <h1>Edit User</h1>
+    <p>You are editing user {{placeHolderUsername}} with ID {{userId}}</p>
+    <input type="text" placeholder="{{placeHolderUsername}}" [(ngModel)]="username" name="name">
+    <input type="text" placeholder="{{placeHolderEmail}}" [(ngModel)]="email" name="email">
+    <input type="date" placeholder="Create Date" [(ngModel)]="date" name="dateOfBirth">
+    <select [(ngModel)]="active" name="role">
+        <option value="" disabled> Is Active</option>
+        <option value="true">True</option>
+        <option value="false">False</option>
+    </select>
+    <div class="buttons">
+        <button (click)="handleCancelClick()" type="button" class="cancel-btn">Cancel</button>
+        <button (click)="handleSaveClick()" type="button" class="save-btn">Save</button>
+    </div>
+</form>

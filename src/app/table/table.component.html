@@ -8,7 +8,7 @@
     <tr *ngFor="let row of data">
       <td *ngFor="let column of getObjectValues(row)">{{ column | uppercase }}</td>
       <div class="buttons">
-        <button class="edit-btn">Edit</button>
+        <button class="edit-btn" (click)="handleEditClick(getObjectValues(row)[0])" type="button">Edit</button>
         <button class="delete-btn" (click)="handleDeleteClick(getObjectValues(row)[0])" type="button">Delete</button>
       </div>
     </tr>

@@ -97,4 +97,41 @@ export class UserManagementService {
     localStorage.setItem('users', JSON.stringify(this.users));
   }
 
+  getUserByUsername(username: string): User | undefined {
+    return this.users.find((user) => user.USERNAME === username);
+  }
+
+  getUserByEmail(email: string): User | undefined {
+    return this.users.find((user) => user.EMAIL === email);
+  }
+
+  getUserByID(id: number): User | undefined {
+    return this.users.find((user) => user.ID === id);
+  }
+
+  updateUser(id: number, username: string, email: string, date: string, active: boolean): void {
+    const users = this.getUsers();
+    const user = this.getUserByID(id);
+    if (user) {
+      user.USERNAME = username;
+      user.EMAIL = email;
+      user.DATE = date;
+      user.ACTIVE = active;
+    }
+    localStorage.setItem('users', JSON.stringify(users));
+  }
+
+  addUser(username: string, email: string, active: boolean, date: string): void {
+    const users = this.getUsers();
+    const id = users[users.length - 1].ID + 1;
+    const user: User = {
+      ID: id,
+      USERNAME: username,
+      EMAIL: email,
+      DATE: date,
+      ACTIVE: active
+    };
+    users.push(user);
+    localStorage.setItem('users', JSON.stringify(users));
+  }
 }
