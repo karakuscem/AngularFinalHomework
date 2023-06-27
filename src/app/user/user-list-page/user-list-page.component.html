@@ -1,5 +1,7 @@
 <app-table [data]="data" [columns]="columns" (onDeleteClick)="handleDeleteClick($event)" (onEditClick)="handleEditClick($event)"></app-table>
-<a class="add-btn" [routerLink]="['add']">Add User</a>
+<div class="add-button">
+    <a class="add-btn" [routerLink]="['add']" >Add User</a>
+</div>
 <form class="edit-form" *ngIf="editMode">
     <h1>Edit User</h1>
     <p>You are editing user {{placeHolderUsername}} with ID {{userId}}</p>
