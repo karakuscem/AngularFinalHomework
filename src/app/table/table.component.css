@@ -60,3 +60,43 @@ th:last-child
 {
     text-align: center;
 }
+
+.pagination
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination > button
+{
+    background-color: var(--primaryColor);
+    color: white;
+    border-radius: 10px;
+    width: 100px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.pagination > button:hover
+{
+    background-color: var(--secondaryColor);
+}
+
+.pagination > button:disabled
+{
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+
+.pagination > span
+{
+    padding: 5px;
+    border: 2px solid var(--secondaryColor);
+    border-radius: 100%;
+    color: var(--secondaryColor);
+}
