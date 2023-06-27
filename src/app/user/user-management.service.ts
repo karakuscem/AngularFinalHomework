@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
-import { usersInfo } from 'src/assets/users';
+import { usersInfo } from 'src/assets/default-users';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class UserManagementService {
 
   getUsers(): User[] {
     if (localStorage.getItem('users') !== null) {
-      return this.users;
+      this.users = JSON.parse(localStorage.getItem('users') || '{}');
     } else {
       this.setUsers();
     }
@@ -40,7 +40,6 @@ export class UserManagementService {
   }
 
   updateUser(id: number, username: string, email: string, date: string, active: boolean): void {
-    const users = this.getUsers();
     const user = this.getUserByID(id);
     if (user) {
       user.USERNAME = username;
@@ -48,12 +47,11 @@ export class UserManagementService {
       user.DATE = date;
       user.ACTIVE = active;
     }
-    localStorage.setItem('users', JSON.stringify(users));
+    localStorage.setItem('users', JSON.stringify(this.users));
   }
 
   addUser(username: string, email: string, active: boolean, date: string): void {
-    const users = this.getUsers();
-    const id = users[users.length - 1].ID + 1;
+    const id = this.users[this.users.length - 1].ID + 1;
     const user: User = {
       ID: id,
       USERNAME: username,
@@ -61,7 +59,7 @@ export class UserManagementService {
       DATE: date,
       ACTIVE: active
     };
-    users.push(user);
-    localStorage.setItem('users', JSON.stringify(users));
+    this.users.push(user);
+    localStorage.setItem('users', JSON.stringify(this.users));
   }
 }
