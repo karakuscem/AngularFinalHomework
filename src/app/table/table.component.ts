@@ -16,7 +16,7 @@ export class TableComponent {
   itemsPerPage = 10;
 
   ngOnChanges(): void {
-    this.pageChanged(1);
+    this.pageChanged(this.currentPage);
   }
 
   getObjectValues(obj: any): any[] {
@@ -25,6 +25,8 @@ export class TableComponent {
 
   handleDeleteClick(id: string): void {
     this.onDeleteClick.emit(id);
+    this.data = this.data.filter(item => item.id !== id);
+    this.pageChanged(this.currentPage);
   }
 
   handleEditClick(id: string): void {
@@ -35,6 +37,7 @@ export class TableComponent {
     const startIndex = (page - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
     this.pagedData = this.data.slice(startIndex, endIndex);
+    this.currentPage = page;
   }
 
   previousPage(): void {
