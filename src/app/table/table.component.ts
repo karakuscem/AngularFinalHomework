@@ -15,10 +15,6 @@ export class TableComponent {
   currentPage = 1;
   itemsPerPage = 10;
 
-  ngOnChanges(): void {
-    this.pageChanged(this.currentPage);
-  }
-
   getObjectValues(obj: any): any[] {
     return Object.entries(obj).map(([key, value]) => `${value}`);
   }
@@ -31,6 +27,10 @@ export class TableComponent {
 
   handleEditClick(id: string): void {
     this.onEditClick.emit(id);
+  }
+
+  ngOnChanges(): void {
+    this.pageChanged(this.currentPage);
   }
 
   pageChanged(page: number): void {
