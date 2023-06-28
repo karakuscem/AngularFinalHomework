@@ -39,7 +39,7 @@ export class PostDetailComponent {
       this.posts = this.postService.getPosts();
       this.users = this.userManagementService.getUsers();
       this.postObj = this.posts.find(post => post.POSTID === Number(id))!;
-      this.author = this.users.find(user => user.ID === this.postObj.USERID)!.USERNAME;
+      this.author = this.users.find(user => user.ID === Number(this.postObj.USERID))!.USERNAME;
     });
   }
 

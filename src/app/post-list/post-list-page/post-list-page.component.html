@@ -1,1 +1,4 @@
 <app-table [data]="data" [columns]="columns" (onDeleteClick)="handleDeleteClick($event)" (onDetailClick)="handleDetailClick($event)" [detailExists]="true"></app-table>
+<div class="add-button">
+    <a class="add-btn" [routerLink]="['add']" >Add Post</a>
+</div>

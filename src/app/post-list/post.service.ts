@@ -51,4 +51,22 @@ export class PostService {
     localStorage.setItem('posts', JSON.stringify(this.posts));
   }
 
+  addPost(title: string, view: number, date: string, published: boolean, userId: number, categoryId: number, content: string): void {
+    const posts = this.getPosts();
+    const id = posts[this.posts.length - 1].POSTID + 1;
+    date = new Date(date).toLocaleDateString();
+    const post: Post = {
+      POSTID: id,
+      TITLE: title,
+      VIEW: view,
+      DATE: date,
+      PUBLISHED: published,
+      USERID: userId,
+      CATEGORYID: categoryId,
+      CONTENT: content
+    };
+    this.posts.push(post);
+    localStorage.setItem('posts', JSON.stringify(this.posts));
+  }
+
 }
