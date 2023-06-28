@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { PostListPageComponent } from './post-list-page/post-list-page.component';
 import { AppModule } from '../app.module';
 import { FormsModule } from '@angular/forms';
+import { PostDetailComponent } from './post-detail/post-detail.component';
 
 @NgModule({
   declarations: [
-    PostListPageComponent
+    PostListPageComponent,
+    PostDetailComponent
   ],
   imports: [
     CommonModule,

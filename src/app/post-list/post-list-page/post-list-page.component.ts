@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Post } from '../post';
 import { PostService } from '../post.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +19,10 @@ export class PostListPageComponent {
   published: boolean = false;
   placeHolderTitle: string = '';
 
-  constructor(private postService: PostService) {
+  constructor(
+    private postService: PostService,
+    private router: Router
+    ) {
     this.data = this.postService.getPosts();
     if (this.data.length === 0) {
       this.postService.setPosts();
@@ -36,5 +40,8 @@ export class PostListPageComponent {
     }
   }
 
-  handleDetailClick($event: number): void {}
+  handleDetailClick($event: number): void {
+    this.postId = Number($event);
+    this.router.navigate(['/post-list/', this.postId]);
+  }
 }

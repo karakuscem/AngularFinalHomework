@@ -35,13 +35,16 @@ export class PostService {
     return this.posts.find(post => post.TITLE.toLowerCase() === title.toLowerCase());
   }
 
-  updatePost(id: number, title: string, view: number, date: string, published: boolean): void {
+  updatePost(id: number, title: string, view: number, date: string, published: boolean, userId: number, categoryId: number, content: string): void {
     this.posts = this.posts.map(post => {
       if (post.POSTID === id) {
         post.TITLE = title;
         post.VIEW = view;
         post.DATE = date;
         post.PUBLISHED = published;
+        post.USERID = userId;
+        post.CATEGORYID = categoryId;
+        post.CONTENT = content;
       }
       return post;
     });
