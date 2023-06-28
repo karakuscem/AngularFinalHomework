@@ -8,8 +8,11 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class TableComponent {
   @Input() columns: string[] = [];
   @Input() data: any[] = [];
+  @Input() detailExists: boolean = false;
+  @Input() editExists: boolean = false;
   @Output() onDeleteClick = new EventEmitter<any>();
   @Output() onEditClick = new EventEmitter<any>();
+  @Output() onDetailClick = new EventEmitter<any>();
 
   pagedData: any[] = [];
   currentPage = 1;
@@ -17,6 +20,10 @@ export class TableComponent {
 
   getObjectValues(obj: any): any[] {
     return Object.entries(obj).map(([key, value]) => `${value}`);
+  }
+
+  handleDetailClick(id: string): void {
+    this.onDetailClick.emit(id);
   }
 
   handleDeleteClick(id: string): void {

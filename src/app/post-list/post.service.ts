@@ -1,9 +1,51 @@
 import { Injectable } from '@angular/core';
+import { Post } from './post';
+import { postsInfo } from 'src/assets/default-posts';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
+  private posts: Post[] = [];
 
-  constructor() { }
+  getPosts(): Post[] {
+    if (localStorage.getItem('posts') !== null) {
+      this.posts = JSON.parse(localStorage.getItem('posts') || '{}');
+    } else {
+      this.setPosts();
+    }
+    return this.posts;
+  }
+
+  setPosts(): void {
+    this.posts = postsInfo;
+    localStorage.setItem('posts', JSON.stringify(this.posts));
+  }
+
+  deletePost(id: number): void {
+    this.posts = this.posts.filter(post => post.POSTID !== id);
+    localStorage.setItem('posts', JSON.stringify(this.posts));
+  }
+
+  getPostById(id: number): Post | undefined {
+    return this.posts.find(post => post.POSTID === id);
+  }
+
+  getPostByTitle(title: string): Post | undefined {
+    return this.posts.find(post => post.TITLE.toLowerCase() === title.toLowerCase());
+  }
+
+  updatePost(id: number, title: string, view: number, date: string, published: boolean): void {
+    this.posts = this.posts.map(post => {
+      if (post.POSTID === id) {
+        post.TITLE = title;
+        post.VIEW = view;
+        post.DATE = date;
+        post.PUBLISHED = published;
+      }
+      return post;
+    });
+    localStorage.setItem('posts', JSON.stringify(this.posts));
+  }
+
 }

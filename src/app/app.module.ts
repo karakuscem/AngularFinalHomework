@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
 import { TableComponent } from './table/table.component';
 import { UserModule } from './user/user.module';
+import { PostListModule } from './post-list/post-list.module';
 
 @NgModule({
   declarations: [

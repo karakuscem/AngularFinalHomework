@@ -1,4 +1,4 @@
-<app-table [data]="data" [columns]="columns" (onDeleteClick)="handleDeleteClick($event)" (onEditClick)="handleEditClick($event)"></app-table>
+<app-table [data]="data" [columns]="columns" (onDeleteClick)="handleDeleteClick($event)" (onEditClick)="handleEditClick($event)" [editExists]="true"></app-table>
 <div class="add-button">
     <a class="add-btn" [routerLink]="['add']" >Add User</a>
 </div>
@@ -7,7 +7,7 @@
     <p>You are editing user {{placeHolderUsername}} with ID {{userId}}</p>
     <input type="text" placeholder="{{placeHolderUsername}}" [(ngModel)]="username" name="name">
     <input type="text" placeholder="{{placeHolderEmail}}" [(ngModel)]="email" name="email">
-    <input type="date" placeholder="Create Date" [(ngModel)]="date" name="dateOfBirth">
+    <input type="date" placeholder="Create Date" [(ngModel)]="date" name="date">
     <select [(ngModel)]="active" name="role">
         <option value="" disabled> Is Active</option>
         <option value="true">True</option>

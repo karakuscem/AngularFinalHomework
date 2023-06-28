@@ -1,1 +1,1 @@
-<p>post-list-page works!</p>
+<app-table [data]="data" [columns]="columns" (onDeleteClick)="handleDeleteClick($event)" (onDetailClick)="handleDetailClick($event)" [detailExists]="true"></app-table>

@@ -6,9 +6,10 @@
   </thead>
   <tbody>
     <tr *ngFor="let row of pagedData">
-      <td *ngFor="let column of getObjectValues(row)">{{ column | uppercase }}</td>
+      <td *ngFor="let column of getObjectValues(row) | slice:0:columns.length-1; let i=index">{{ column | uppercase }}</td>
       <div class="buttons">
-        <button class="edit-btn" (click)="handleEditClick(getObjectValues(row)[0])" type="button">Edit</button>
+        <button class="detail-btn" (click)="handleDetailClick(getObjectValues(row)[0])" type="button" *ngIf="detailExists">Detail</button>
+        <button class="edit-btn" (click)="handleEditClick(getObjectValues(row)[0])" type="button" *ngIf="editExists">Edit</button>
         <button class="delete-btn" (click)="handleDeleteClick(getObjectValues(row)[0])" type="button">Delete</button>
       </div>
     </tr>

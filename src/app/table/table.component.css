@@ -36,7 +36,8 @@ tr:nth-child(odd)
     justify-content: space-evenly;
 }
 
-.edit-btn
+.edit-btn,
+.detail-btn
 {
     background-color: var(--primaryColor);
     color: white;
