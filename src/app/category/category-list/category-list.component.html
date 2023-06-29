@@ -1,1 +1,11 @@
-<app-table [data]="data" [columns]="columns" [editExists]="true" (onDeleteClick)="handleDeleteClick($event)"></app-table>
+<app-table [data]="data" [columns]="columns" [editExists]="true" (onDeleteClick)="handleDeleteClick($event)" (onEditClick)="handleEditClick($event)" ></app-table>
+<form class="edit-form" *ngIf="editMode">
+    <h1>Edit Category</h1>
+    <p>You are editing category with ID {{categoryId}}</p>
+    <input type="text" placeholder="Category Name" [(ngModel)]="categoryName" name="name">
+    <input type="date" placeholder="Date" [(ngModel)]="date" name="date">
+    <div class="buttons">
+        <button (click)="handleCancelClick()" type="button" class="cancel-btn">Cancel</button>
+        <button (click)="handleSaveClick()" type="button" class="save-btn">Save</button>
+    </div>
+</form>
