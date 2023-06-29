@@ -1,4 +1,4 @@
-<app-table [data]="data" [columns]="columns" [editExists]="true" (onDeleteClick)="handleDeleteClick($event)" (onEditClick)="handleEditClick($event)" ></app-table>
+<app-table [data]="data" [columns]="columns" [editExists]="true" [detailExists]="true" (onDeleteClick)="handleDeleteClick($event)" (onEditClick)="handleEditClick($event)" ></app-table>
 <form class="edit-form" *ngIf="editMode">
     <h1>Edit Category</h1>
     <p>You are editing category with ID {{categoryId}}</p>
