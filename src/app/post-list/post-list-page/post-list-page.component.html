@@ -1,3 +1,13 @@
+<form (submit)="applyFilter()">
+    <select [(ngModel)]="filterBy" name="filterBy">
+        <option value="postId">Post ID</option>
+        <option value="userId">User ID</option>
+        <option value="categoryId">Category ID</option>
+    </select>
+    <input type="text" [(ngModel)]="filterValue" name="filterValue">
+    <button type="submit">Apply</button>
+    <button (click)="clearFilter()">Clear</button>
+</form>
 <app-table [data]="data" [columns]="columns" (onDeleteClick)="handleDeleteClick($event)" (onDetailClick)="handleDetailClick($event)" [detailExists]="true"></app-table>
 <div class="add-button">
     <a class="add-btn" [routerLink]="['add']" >Add Post</a>

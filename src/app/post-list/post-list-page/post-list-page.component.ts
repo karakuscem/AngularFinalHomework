@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Post } from '../post';
 import { PostService } from '../post.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params  } from '@angular/router';
 
 
 @Component({
@@ -18,10 +18,13 @@ export class PostListPageComponent {
   date: string = '';
   published: boolean = false;
   placeHolderTitle: string = '';
+  filterBy: string = '';
+  filterValue: string = '';
 
   constructor(
     private postService: PostService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
     ) {
     this.data = this.postService.getPosts();
     if (this.data.length === 0) {
@@ -30,18 +33,57 @@ export class PostListPageComponent {
     }
   }
 
+ngOnInit() {
+  this.route.queryParams.subscribe((params: Params) => {
+    const postId = params['postId'];
+    const userId = params['userId'];
+    const categoryId = params['categoryId'];
+
+    if (postId) {
+      this.data = this.data.filter(post => post.POSTID === Number(postId));
+    }
+    if (userId) {
+      this.data = this.data.filter(post => post.USERID === Number(userId));
+    }
+    if (categoryId) {
+      this.data = this.data.filter(post => post.CATEGORYID === categoryId);
+    }
+  });
+}
+
+
   handleDeleteClick($event: number): void {
-    if (this.data.length === 1)
+    if (this.postService.getPosts.length === 1)
       alert('You cannot delete the last post!');
     else if (confirm('Are you sure you want to delete this post?'))
     {
       this.postService.deletePost(Number($event));
       this.data = this.postService.getPosts();
+      this.clearFilter();
     }
   }
 
   handleDetailClick($event: number): void {
     this.postId = Number($event);
     this.router.navigate(['/post-list/', this.postId]);
+  }
+
+  applyFilter(): void {
+    this.data = this.postService.getPosts();
+    if (this.filterBy === 'postId') {
+      this.data = this.data.filter(post => post.POSTID === Number(this.filterValue));
+    }
+    else if (this.filterBy === 'userId') {
+      this.data = this.data.filter(post => post.USERID === Number(this.filterValue));
+    }
+    else if (this.filterBy === 'categoryId') {
+      this.data = this.data.filter(post => post.CATEGORYID === Number(this.filterValue));
+    }
+  }
+
+  clearFilter(): void {
+    this.data = this.postService.getPosts();
+    this.filterBy = '';
+    this.filterValue = '';
   }
 }
