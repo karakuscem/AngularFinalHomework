@@ -71,13 +71,13 @@ ngOnInit() {
   applyFilter(): void {
     this.data = this.postService.getPosts();
     if (this.filterBy === 'postId') {
-      this.data = this.data.filter(post => post.POSTID === Number(this.filterValue));
+      this.router.navigate(['/post-list/'], { queryParams: { postId: this.filterValue } });
     }
     else if (this.filterBy === 'userId') {
-      this.data = this.data.filter(post => post.USERID === Number(this.filterValue));
+      this.router.navigate(['/post-list/'], { queryParams: { userId: this.filterValue } });
     }
     else if (this.filterBy === 'categoryId') {
-      this.data = this.data.filter(post => post.CATEGORYID === Number(this.filterValue));
+      this.router.navigate(['/post-list/'], { queryParams: { categoryId: this.filterValue } });
     }
   }
 
