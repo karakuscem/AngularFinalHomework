@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Category } from '../category';
 import { CategoryService } from '../category.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-category-list',
@@ -15,19 +16,31 @@ export class CategoryListComponent {
   categoryName: string = '';
   date: string = '';
 
-  constructor(private CategoryService: CategoryService){
+  constructor(
+    private CategoryService: CategoryService,
+    private Router: Router
+    ){
     this.data = this.CategoryService.getCategories();
   }
 
-  handleDeleteClick(id: number): void {
-    this.CategoryService.deleteCategory(Number(id));
-    if(confirm("Are you sure to delete this category ?"))
+  handleDeleteClick($event: number): void {
+    if (this.CategoryService.getCategories().length === 1)
+      alert('You cannot delete the last category!');
+    else if (confirm('Are you sure you want to delete this category?'))
+    {
+      this.CategoryService.deleteCategory(Number($event));
       this.data = this.CategoryService.getCategories();
+    }
   }
 
-  handleEditClick(id: number): void {
+  handleEditClick($event: number): void {
     this.editMode = !this.editMode;
-    this.categoryId = id;
+    this.categoryId = $event;
+  }
+
+  handleDetailClick($event: number): void {
+    this.categoryId = Number($event);
+    this.Router.navigate(['/category-list/', this.categoryId]);
   }
 
   handleCancelClick(): void {
