@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { User } from 'src/app/user/user';
 import { PostService } from '../post.service';
 import { UserManagementService } from 'src/app/user/user-management.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-add',
@@ -20,7 +21,8 @@ export class PostAddComponent {
 
   constructor(
     private postService: PostService,
-    private userManagementService: UserManagementService
+    private userManagementService: UserManagementService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -43,17 +45,11 @@ export class PostAddComponent {
         Number(this.userId),
         Number(this.categoryId),
         this.content);
-      window.location.href = '/post-list';
+      this.router.navigate(['/post-list']);
     }
   }
 
   cancel(): void {
-    this.title = '';
-    this.views = 0;
-    this.date = '';
-    this.published = false;
-    this.userId = 0;
-    this.categoryId = 0;
-    this.content = '';
+    this.router.navigate(['/post-list']);
   }
 }

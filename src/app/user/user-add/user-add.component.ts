@@ -28,10 +28,6 @@ export class UserAddComponent {
     {
       this.date = new Date(this.date).toLocaleDateString();
       this.userService.addUser(this.username, this.email, this.isActive, this.date);
-      this.username = '';
-      this.email = '';
-      this.isActive = true;
-      this.date = '';
       this.isSubmitted = true;
       setTimeout(() => {
         this.isSubmitted = false;
@@ -41,10 +37,6 @@ export class UserAddComponent {
   }
 
   handleCancel(): void {
-    this.username = '';
-    this.email = '';
-    this.isActive = true;
-    this.date = '';
     this.isCancel = true;
     setTimeout(() => {
       this.isCancel = false;

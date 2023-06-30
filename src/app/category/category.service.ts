@@ -24,6 +24,16 @@ export class CategoryService {
     localStorage.setItem('category', JSON.stringify(this.categories));
   }
 
+  addCategory(name: string, date: string): void {
+    const newCategory: Category = {
+      CATEGORYID: Number(this.getCategories()[this.categories.length - 1].CATEGORYID) + 1,
+      NAME: name,
+      DATE: new Date(date).toLocaleDateString()
+    };
+    this.categories.push(newCategory);
+    localStorage.setItem('category', JSON.stringify(this.categories));
+  }
+
   deleteCategory(id: number) {
     this.categories = this.categories.filter((category) => category.CATEGORYID !== id);
     localStorage.setItem('category', JSON.stringify(this.categories));
@@ -31,6 +41,10 @@ export class CategoryService {
 
   getCategoryById(id: number): Category | undefined {
     return this.categories.find((category) => category.CATEGORYID === id);
+  }
+
+  getCategoryByName(name: string): Category | undefined {
+    return this.categories.find((category) => category.NAME === name);
   }
 
   editCategory(id: number, name: string, date: string)
