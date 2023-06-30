@@ -11,6 +11,7 @@ import { CategoryAddComponent } from './category/category-add/category-add.compo
 
 
 const routes: Routes = [
+  { path: '', redirectTo: '/user-list-page', pathMatch: 'full'},
   { path: 'user-list-page', component: UserListPageComponent },
   { path: 'user-list-page/add', component: UserAddComponent},
   { path: 'post-list', component: PostListPageComponent },
