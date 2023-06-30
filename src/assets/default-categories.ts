@@ -32,22 +32,22 @@ export const categoryInfo =
         },
         {
           CATEGORYID: 7,
-          NAME: "Beauty",
+          NAME: "Clothing",
           DATE: new Date("6/2/2023").toLocaleDateString()
         },
         {
           CATEGORYID: 8,
-          NAME: "Toys",
+          NAME: "Shoes",
           DATE: new Date("1/25/2021").toLocaleDateString()
         },
         {
           CATEGORYID: 9,
-          NAME: "Books",
+          NAME: "Computers",
           DATE: new Date("10/8/2022").toLocaleDateString()
         },
         {
           CATEGORYID: 10,
-          NAME: "Home Decor",
+          NAME: "Decor",
           DATE: new Date("1/4/2021").toLocaleDateString()
         }
 ]

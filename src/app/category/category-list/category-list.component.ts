@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Category } from '../category';
 import { CategoryService } from '../category.service';
 import { Router } from '@angular/router';
+import { PostService } from 'src/app/post-list/post.service';
 
 @Component({
   selector: 'app-category-list',
@@ -26,6 +27,8 @@ export class CategoryListComponent {
   handleDeleteClick($event: number): void {
     if (this.CategoryService.getCategories().length === 1)
       alert('You cannot delete the last category!');
+    else if (this.CategoryService.postCount(Number($event)) > 0)
+      alert('You cannot delete a category that has posts!');
     else if (confirm('Are you sure you want to delete this category?'))
     {
       this.CategoryService.deleteCategory(Number($event));

@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Post } from '../post';
 import { User } from 'src/app/user/user';
 import { UserManagementService } from 'src/app/user/user-management.service';
+import { CategoryService } from 'src/app/category/category.service';
+import { Category } from 'src/app/category/category';
 
 @Component({
   selector: 'app-post-detail',
@@ -13,6 +15,7 @@ import { UserManagementService } from 'src/app/user/user-management.service';
 export class PostDetailComponent {
   posts: Post[] = [];
   users: User[] = [];
+  categories: Category[] = [];
   postObj: Post = {
     POSTID: 0,
     TITLE: '',
@@ -30,16 +33,19 @@ export class PostDetailComponent {
   constructor(
     private postService: PostService,
     private route: ActivatedRoute,
-    private userManagementService: UserManagementService
+    private userManagementService: UserManagementService,
+    private categoryService: CategoryService,
     ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       const id = params['id'];
       this.posts = this.postService.getPosts();
+      this.categories = this.categoryService.getCategories();
       this.users = this.userManagementService.getUsers();
       this.postObj = this.posts.find(post => post.POSTID === Number(id))!;
       this.author = this.users.find(user => user.ID === Number(this.postObj.USERID))!.USERNAME;
+      this.category = this.categories.find(category => category.CATEGORYID === Number(this.postObj.CATEGORYID))!.NAME;
     });
   }
 

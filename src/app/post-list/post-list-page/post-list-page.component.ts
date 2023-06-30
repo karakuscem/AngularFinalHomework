@@ -46,7 +46,7 @@ ngOnInit() {
       this.data = this.data.filter(post => post.USERID === Number(userId));
     }
     if (categoryId) {
-      this.data = this.data.filter(post => post.CATEGORYID === categoryId);
+      this.data = this.data.filter(post => post.CATEGORYID === Number(categoryId));
     }
   });
 }

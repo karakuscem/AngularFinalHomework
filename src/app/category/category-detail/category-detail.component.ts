@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Category } from '../category';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from '../category.service';
+import { PostService } from 'src/app/post-list/post.service';
 
 @Component({
   selector: 'app-category-detail',
@@ -21,7 +22,8 @@ export class CategoryDetailComponent {
   constructor(
     private CategoryService: CategoryService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private postService: PostService,
   ) {}
 
   ngOnInit() {
@@ -37,11 +39,12 @@ export class CategoryDetailComponent {
   handleDeleteClick($event: number): void {
     if (this.CategoryService.getCategories().length === 1)
       alert('You cannot delete the last category!');
+    else if (this.CategoryService.postCount(Number($event)) > 0)
+      alert('You cannot delete a category that has posts!');
     else if (confirm('Are you sure you want to delete this category?'))
     {
       this.CategoryService.deleteCategory(Number($event));
       this.categories = this.CategoryService.getCategories();
-      this.router.navigate(['/category-list']);
     }
   }
 

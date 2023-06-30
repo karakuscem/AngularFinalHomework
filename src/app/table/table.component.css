@@ -96,8 +96,12 @@ th:last-child
 
 .pagination > span
 {
-    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
     border: 2px solid var(--secondaryColor);
-    border-radius: 100%;
     color: var(--secondaryColor);
 }
