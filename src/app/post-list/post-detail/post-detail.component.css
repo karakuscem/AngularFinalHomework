@@ -167,3 +167,44 @@
     background-color: var(--secondaryColor);
     color: var(--writeColor);
 }
+
+.comments
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 5px;
+}
+
+.comments > h1
+{
+    font-size: 30px;
+    color: var(--writeColor);
+}
+
+.comment
+{
+    background-color: var(--primaryColor);
+    color: var(--writeColor);
+    width: 30%;
+    min-width: 300px;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.comment > div
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}

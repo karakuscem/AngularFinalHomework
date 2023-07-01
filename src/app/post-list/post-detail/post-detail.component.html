@@ -47,3 +47,29 @@
     </select>
     <button class="update-btn" (click)="updatePost()" type="button">Update</button>
 </form>
+
+<div class="comments">
+    <h1>Comments</h1>
+    <div class="comment" *ngFor="let comment of userComments">
+        <div>
+            <h2>Comment ID: </h2>
+            <p>{{ comment.COMMENTID }}</p>
+        </div>
+        <div>
+            <h2>Comment: </h2>
+            <p>{{ comment.COMMENT }}</p>
+        </div>
+        <div>
+            <h2>Date: </h2>
+            <p>{{ comment.DATE }}</p>
+        </div>
+        <div>
+            <h2>Post ID: </h2>
+            <p>{{ comment.POSTID }}</p>
+        </div>
+        <div>
+            <h2>User ID: </h2>
+            <p>{{ comment.USERID }}</p>
+        </div>
+    </div>
+</div>

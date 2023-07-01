@@ -7,6 +7,7 @@ import { UserManagementService } from 'src/app/user/user-management.service';
 import { CategoryService } from 'src/app/category/category.service';
 import { Category } from 'src/app/category/category';
 import { CommentService } from 'src/app/comment/comment.service';
+import { Comment } from 'src/app/comment/comment';
 
 @Component({
   selector: 'app-post-detail',
@@ -17,6 +18,8 @@ export class PostDetailComponent {
   posts: Post[] = [];
   users: User[] = [];
   categories: Category[] = [];
+  comments: Comment[] = [];
+  userComments: Comment[] = [];
   postObj: Post = {
     POSTID: 0,
     TITLE: '',
@@ -46,9 +49,11 @@ export class PostDetailComponent {
       this.posts = this.postService.getPosts();
       this.categories = this.categoryService.getCategories();
       this.users = this.userManagementService.getUsers();
+      this.comments = this.commentService.getComments();
       this.postObj = this.posts.find(post => post.POSTID === Number(id))!;
       this.author = this.users.find(user => user.ID === Number(this.postObj.USERID))!.USERNAME;
       this.category = this.categories.find(category => category.CATEGORYID === Number(this.postObj.CATEGORYID))!.NAME;
+      this.userComments = this.commentService.getCommentsByPostID(Number(this.postObj.POSTID));
     });
   }
 
