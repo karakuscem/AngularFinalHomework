@@ -4,6 +4,8 @@ import { PostService } from '../post.service';
 import { UserManagementService } from 'src/app/user/user-management.service';
 import { Router } from '@angular/router';
 import { Post } from '../post';
+import { CategoryService } from 'src/app/category/category.service';
+import { Category } from 'src/app/category/category';
 
 @Component({
   selector: 'app-post-add',
@@ -19,15 +21,18 @@ export class PostAddComponent {
   categoryId: number = 0;
   content: string = '';
   users: User[] = [];
+  categories: Category[] = [];
 
   constructor(
     private postService: PostService,
     private userManagementService: UserManagementService,
+    private categoryService: CategoryService,
     private router: Router
     ) { }
 
   ngOnInit(): void {
     this.users = this.userManagementService.getUsers();
+    this.categories = this.categoryService.getCategories();
   }
 
   addPost(): void {

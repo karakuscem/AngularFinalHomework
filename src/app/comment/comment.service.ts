@@ -50,4 +50,9 @@ export class CommentService {
     });
     localStorage.setItem('comments', JSON.stringify(this.comments));
   }
+
+  addComment(commentObj: Comment): void {
+    this.comments.push(commentObj);
+    localStorage.setItem('comments', JSON.stringify(this.comments));
+  }
 }
