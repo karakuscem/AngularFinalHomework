@@ -31,6 +31,16 @@ export class CommentService {
     return this.comments.find(comment => comment.COMMENTID === id)!;
   }
 
+  getCommentsByUserID(id: number): Comment[] {
+    this.comments = this.getComments();
+    return this.comments.filter(comment => Number(comment.USERID) === Number(id));
+  }
+
+  getCommentsByPostID(id: number): Comment[] {
+    this.comments = this.getComments();
+    return this.comments.filter(comment => Number(comment.POSTID) === Number(id));
+  }
+
   updateComment(commentObj: Comment): void {
     this.comments = this.comments.map(comment => {
       if (comment.COMMENTID === commentObj.COMMENTID) {

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Post } from '../post';
 import { PostService } from '../post.service';
 import { Router, ActivatedRoute, Params  } from '@angular/router';
+import { CommentService } from 'src/app/comment/comment.service';
 
 
 @Component({
@@ -18,13 +19,13 @@ export class PostListPageComponent {
   date: string = '';
   published: boolean = false;
   placeHolderTitle: string = '';
-  filterBy: string = '';
-  filterValue: string = '';
+  filterOptions: string[] = ["postId", "userId", "categoryId"];
 
   constructor(
     private postService: PostService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private commentService: CommentService
     ) {
     this.data = this.postService.getPosts();
     if (this.data.length === 0) {
@@ -38,6 +39,7 @@ ngOnInit() {
     const postId = params['postId'];
     const userId = params['userId'];
     const categoryId = params['categoryId'];
+    this.data = this.postService.getPosts();
 
     if (postId) {
       this.data = this.data.filter(post => post.POSTID === Number(postId));
@@ -53,7 +55,9 @@ ngOnInit() {
 
 
   handleDeleteClick($event: number): void {
-    if (confirm('Are you sure you want to delete this post?'))
+    if (this.commentService.getCommentsByPostID(Number($event)).length > 0)
+      alert('You cannot delete a post with comments!');
+    else if (confirm('Are you sure you want to delete this post?'))
     {
       this.postService.deletePost(Number($event));
       this.data = this.postService.getPosts();
@@ -66,22 +70,20 @@ ngOnInit() {
     this.router.navigate(['/post-list/', this.postId]);
   }
 
-  applyFilter(): void {
-    this.data = this.postService.getPosts();
-    if (this.filterBy === 'postId') {
-      this.router.navigate(['/post-list/'], { queryParams: { postId: this.filterValue } });
+  applyFilter(obj: any): void {
+    if (obj.filterBy === 'postId') {
+      this.router.navigate(['/post-list'], { queryParams: { postId: obj.filterValue } });
     }
-    else if (this.filterBy === 'userId') {
-      this.router.navigate(['/post-list/'], { queryParams: { userId: this.filterValue } });
+    else if (obj.filterBy === 'userId') {
+      this.router.navigate(['/post-list'], { queryParams: { userId: obj.filterValue } });
     }
-    else if (this.filterBy === 'categoryId') {
-      this.router.navigate(['/post-list/'], { queryParams: { categoryId: this.filterValue } });
+    else if (obj.filterBy === 'categoryId') {
+      this.router.navigate(['/post-list'], { queryParams: { categoryId: obj.filterValue } });
     }
   }
 
   clearFilter(): void {
     this.data = this.postService.getPosts();
-    this.filterBy = '';
-    this.filterValue = '';
+    this.router.navigate(['/post-list']);
   }
 }

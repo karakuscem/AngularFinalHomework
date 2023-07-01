@@ -35,6 +35,11 @@ export class PostService {
     return this.posts.find(post => post.TITLE.toLowerCase() === title.toLowerCase());
   }
 
+  getPostsByUserID(id: number): Post[] {
+    this.posts = this.getPosts();
+    return this.posts.filter(post => Number(post.USERID) === id);
+  }
+
   updatePost(postObj: Post): void {
     this.posts = this.posts.map(post => {
       if (Number(post.POSTID) === Number(postObj.POSTID)) {

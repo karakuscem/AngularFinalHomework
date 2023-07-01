@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { User } from '../user';
 import { UserManagementService } from '../user-management.service';
+import { PostService } from 'src/app/post-list/post.service';
+import { CommentService } from 'src/app/comment/comment.service';
+import { Post } from 'src/app/post-list/post';
+import { Comment } from 'src/app/comment/comment';
 
 @Component({
   selector: 'app-user-list-page',
@@ -19,7 +23,11 @@ export class UserListPageComponent {
   placeHolderUsername: string = '';
   placeHolderEmail: string = '';
 
-  constructor(private userService: UserManagementService) {
+  constructor(
+    private userService: UserManagementService,
+    private postService: PostService,
+    private commentService: CommentService
+    ) {
     this.data = this.userService.getUsers();
     if (this.data.length === 0) {
       this.userService.setUsers();
@@ -30,6 +38,10 @@ export class UserListPageComponent {
   handleDeleteClick($event: number): void {
     if (this.data.length === 1)
       alert('You cannot delete the last user!');
+    else if (this.postService.getPostsByUserID(Number($event)).length > 0)
+      alert('You cannot delete a user with posts!');
+    else if (this.commentService.getCommentsByUserID(Number($event)).length > 0)
+      alert('You cannot delete a user with comments!');
     else if (confirm('Are you sure you want to delete this user?'))
     {
       this.userService.deleteUser(Number($event));

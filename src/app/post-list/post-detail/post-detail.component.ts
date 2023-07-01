@@ -6,6 +6,7 @@ import { User } from 'src/app/user/user';
 import { UserManagementService } from 'src/app/user/user-management.service';
 import { CategoryService } from 'src/app/category/category.service';
 import { Category } from 'src/app/category/category';
+import { CommentService } from 'src/app/comment/comment.service';
 
 @Component({
   selector: 'app-post-detail',
@@ -36,6 +37,7 @@ export class PostDetailComponent {
     private userManagementService: UserManagementService,
     private categoryService: CategoryService,
     private Router: Router,
+    private commentService: CommentService
     ) { }
 
   ngOnInit() {
@@ -55,6 +57,8 @@ export class PostDetailComponent {
   }
 
   deletePost(): void {
+    if (this.commentService.getCommentsByPostID(Number(this.postObj.POSTID)).length > 0)
+      alert('You cannot delete a post with comments!');
     if (confirm('Are you sure you want to delete this post?'))
     {
       this.postService.deletePost(this.postObj.POSTID);

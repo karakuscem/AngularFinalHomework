@@ -11,21 +11,25 @@ import { UserModule } from './user/user.module';
 import { PostListModule } from './post-list/post-list.module';
 import { CategoryModule } from './category/category.module';
 import { CommentModule } from './comment/comment.module';
+import { FilterComponent } from './filter/filter.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     TableComponent,
+    FilterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatIconModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [TableComponent, AppRoutingModule]
+  exports: [TableComponent, AppRoutingModule, FilterComponent]
 })
 export class AppModule { }
