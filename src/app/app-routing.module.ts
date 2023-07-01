@@ -8,6 +8,8 @@ import { PostAddComponent } from './post-list/post-add/post-add.component';
 import { CategoryListComponent } from './category/category-list/category-list.component';
 import { CategoryDetailComponent } from './category/category-detail/category-detail.component';
 import { CategoryAddComponent } from './category/category-add/category-add.component';
+import { CommentListComponent } from './comment/comment-list/comment-list.component';
+import { CommentDetailComponent } from './comment/comment-detail/comment-detail.component';
 
 
 const routes: Routes = [
@@ -19,7 +21,9 @@ const routes: Routes = [
   { path: 'post-list/:id', component: PostDetailComponent},
   { path: 'category-list', component: CategoryListComponent},
   { path: 'category-list/add', component: CategoryAddComponent},
-  { path: 'category-list/:id', component: CategoryDetailComponent}
+  { path: 'category-list/:id', component: CategoryDetailComponent},
+  { path: 'comment-list', component: CommentListComponent },
+  { path: 'comment-list/:id', component: CommentDetailComponent }
 ];
 
 @NgModule({

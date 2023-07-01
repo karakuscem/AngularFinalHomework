@@ -3,6 +3,7 @@ import { User } from 'src/app/user/user';
 import { PostService } from '../post.service';
 import { UserManagementService } from 'src/app/user/user-management.service';
 import { Router } from '@angular/router';
+import { Post } from '../post';
 
 @Component({
   selector: 'app-post-add',
@@ -30,21 +31,22 @@ export class PostAddComponent {
   }
 
   addPost(): void {
-    if (this.title === ''
-      || this.date === ''
-      || this.userId === 0
-      || this.categoryId === 0
-      || this.content === '')
+    if (this.title === '' || this.date === '' || this.userId === 0 || this.categoryId === 0 || this.content === '')
       alert('Please fill in all fields!');
-    else {
-      this.postService.addPost(
-        this.title,
-        Number(this.views),
-        this.date,
-        Boolean(this.published),
-        Number(this.userId),
-        Number(this.categoryId),
-        this.content);
+    else
+    {
+      const id = this.postService.getPosts()[this.postService.getPosts().length - 1].POSTID + 1;
+      const newPost: Post = {
+        POSTID: id,
+        TITLE: this.title,
+        VIEW: Number(this.views),
+        DATE: new Date(this.date).toLocaleDateString(),
+        PUBLISHED: Boolean(this.published),
+        USERID: Number(this.userId),
+        CATEGORYID: Number(this.categoryId),
+        CONTENT: this.content
+      };
+      this.postService.addPost(newPost);
       this.router.navigate(['/post-list']);
     }
   }

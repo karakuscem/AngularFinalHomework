@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PostService } from '../post.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from '../post';
 import { User } from 'src/app/user/user';
 import { UserManagementService } from 'src/app/user/user-management.service';
@@ -35,6 +35,7 @@ export class PostDetailComponent {
     private route: ActivatedRoute,
     private userManagementService: UserManagementService,
     private categoryService: CategoryService,
+    private Router: Router,
     ) { }
 
   ngOnInit() {
@@ -57,22 +58,14 @@ export class PostDetailComponent {
     if (confirm('Are you sure you want to delete this post?'))
     {
       this.postService.deletePost(this.postObj.POSTID);
-      window.location.href = '/post-list';
+      this.Router.navigate(['/post-list']);
     }
   }
 
   updatePost(): void {
-    this.postService.updatePost(
-      this.postObj.POSTID,
-      this.postObj.TITLE,
-      Number(this.postObj.VIEW),
-      this.postObj.DATE,
-      Boolean(this.postObj.PUBLISHED),
-      Number(this.postObj.USERID),
-      Number(this.postObj.CATEGORYID),
-      this.postObj.CONTENT
-    );
-    this.author = this.users.find(user => user.ID === this.postObj.USERID)!.USERNAME;
+    this.postService.updatePost(this.postObj);
+    this.author = this.users.find(user => user.ID === Number(this.postObj.USERID))!.USERNAME;
     this.editMode = false;
+    this.Router.navigate(['/post-list']);
   }
 }

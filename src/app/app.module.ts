@@ -10,6 +10,7 @@ import { TableComponent } from './table/table.component';
 import { UserModule } from './user/user.module';
 import { PostListModule } from './post-list/post-list.module';
 import { CategoryModule } from './category/category.module';
+import { CommentModule } from './comment/comment.module';
 
 @NgModule({
   declarations: [

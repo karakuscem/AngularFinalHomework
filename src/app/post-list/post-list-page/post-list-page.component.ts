@@ -53,9 +53,7 @@ ngOnInit() {
 
 
   handleDeleteClick($event: number): void {
-    if (this.postService.getPosts.length === 1)
-      alert('You cannot delete the last post!');
-    else if (confirm('Are you sure you want to delete this post?'))
+    if (confirm('Are you sure you want to delete this post?'))
     {
       this.postService.deletePost(Number($event));
       this.data = this.postService.getPosts();
