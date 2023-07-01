@@ -1,24 +1,42 @@
 <div class="post-card">
     <div class="post-detail">
         <div class="header">
-            <div class="header-up">
-                <p>ID: {{postObj.POSTID}}</p>
-                <h1>Title: {{ postObj.TITLE | uppercase}}</h1>
-            </div>
-            <div class="header-down">
-                <p>Category: {{ category | uppercase }}</p>
-                <p>Date :{{ postObj.DATE }}</p>
-                <p>Author: {{ author | uppercase}}</p>
-            </div>
+            <p>{{postObj.POSTID}}</p>
+            <h1>{{ postObj.TITLE | uppercase}}</h1>
         </div>
         <div class="content">
-            <p>Content: {{ postObj.CONTENT }}</p>
+            <h2>Post Content</h2>
+            <p>{{ postObj.CONTENT }}</p>
         </div>
         <div class="footer">
-            <p>View: {{ postObj.VIEW }}</p>
-            <p>Published: {{ postObj.PUBLISHED }}</p>
-            <p>User ID: {{ postObj.USERID }}</p>
-            <p>Category ID: {{ postObj.CATEGORYID }}</p>
+            <div>
+                <h2>Category: </h2>
+                <p>{{ category | uppercase }}</p>
+            </div>
+            <div>
+                <h2>Date :</h2>
+                <p>{{ postObj.DATE }}</p>
+            </div>
+            <div>
+                <h2>Author: </h2>
+                <p>{{ author | uppercase}}</p>
+            </div>
+            <div>
+                <h2>View: </h2>
+                <p>{{ postObj.VIEW }}</p>
+            </div>
+            <div>
+                <h2>Published: </h2>
+                <p>{{ postObj.PUBLISHED }}</p>
+            </div>
+            <div>
+                <h2>User ID: </h2>
+                <p>{{ postObj.USERID }}</p>
+            </div>
+            <div>
+                <h2>Category ID: </h2>
+                <p> {{ postObj.CATEGORYID }}</p>
+            </div>
         </div>
     </div>
     <div class="buttons">

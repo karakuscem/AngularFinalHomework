@@ -97,6 +97,7 @@ export class UserListPageComponent {
       this.userService.updateUser(this.userId, this.username, this.email, this.date, this.active);
       this.data = this.userService.getUsers();
       this.editMode = false;
+      this.handleCancelClick();
     }
   }
 
