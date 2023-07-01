@@ -5,7 +5,7 @@ import { PostService } from 'src/app/post-list/post.service';
 import { CommentService } from 'src/app/comment/comment.service';
 import { Post } from 'src/app/post-list/post';
 import { Comment } from 'src/app/comment/comment';
-
+import { Router, ActivatedRoute, Params } from '@angular/router';
 @Component({
   selector: 'app-user-list-page',
   templateUrl: './user-list-page.component.html',
@@ -22,17 +22,35 @@ export class UserListPageComponent {
   active: boolean = false;
   placeHolderUsername: string = '';
   placeHolderEmail: string = '';
+  filterOptions: string[] = ['userId', 'active'];
 
   constructor(
     private userService: UserManagementService,
     private postService: PostService,
-    private commentService: CommentService
+    private commentService: CommentService,
+    private Router: Router,
+    private ActivatedRoute: ActivatedRoute
     ) {
     this.data = this.userService.getUsers();
     if (this.data.length === 0) {
       this.userService.setUsers();
       this.data = this.userService.getUsers();
     }
+  }
+
+  ngOnInit() {
+    this.ActivatedRoute.queryParams.subscribe((params: Params) => {
+      const userId = params['userId'];
+      const active = params['active'];
+      this.data = this.userService.getUsers();
+
+      if (userId) {
+        this.data = this.data.filter(user => Number(user.ID) === Number(userId));
+      }
+      if (active) {
+        this.data = this.data.filter(user => Number(user.ACTIVE) === Number(active));
+      }
+    });
   }
 
   handleDeleteClick($event: number): void {
@@ -80,5 +98,17 @@ export class UserListPageComponent {
       this.data = this.userService.getUsers();
       this.editMode = false;
     }
+  }
+
+  applyFilter(obj: any) {
+   if (obj.filterBy === 'userId')
+      this.Router.navigate(['/user-list-page'], { queryParams: { userId: obj.filterValue } });
+    else if (obj.filterBy === 'active')
+      this.Router.navigate(['/user-list-page'], { queryParams: { active: obj.filterValue } });
+  }
+
+  clearFilter() {
+    this.data = this.userService.getUsers();
+    this.Router.navigate(['/user-list-page']);
   }
 }

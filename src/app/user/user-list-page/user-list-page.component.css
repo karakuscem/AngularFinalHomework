@@ -106,3 +106,9 @@
 {
     background-color: var(--secondaryColor);
 }
+
+.warning
+{
+    padding: 5px;
+    color: var(--writeColor);
+}
