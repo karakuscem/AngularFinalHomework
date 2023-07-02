@@ -45,6 +45,9 @@ export class TableComponent {
     const endIndex = startIndex + this.itemsPerPage;
     this.pagedData = this.data.slice(startIndex, endIndex);
     this.currentPage = page;
+    if (this.pagedData.length === 0 && this.currentPage > 1) {
+      this.previousPage();
+    }
   }
 
   previousPage(): void {
