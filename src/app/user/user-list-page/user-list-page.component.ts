@@ -65,6 +65,7 @@ export class UserListPageComponent {
       this.userService.deleteUser(Number($event));
       this.data = this.userService.getUsers();
     }
+
   }
 
   handleEditClick($event: number): void {
@@ -86,11 +87,9 @@ export class UserListPageComponent {
   handleSaveClick(): void {
     if (this.username === '' || this.email === '' || this.date === '')
       alert('Please fill out all fields!');
-    else if (this.userService.getUserByUsername(this.username)
-      && this.userService.getUserByUsername(this.username.toLowerCase())!.ID !== this.userId)
+    else if (this.userService.getUserByUsername(this.username.toLowerCase()) !== undefined)
       alert('Username already exists!');
-    else if (this.userService.getUserByEmail(this.email)
-      && this.userService.getUserByEmail(this.email.toLowerCase())!.ID !== this.userId)
+    else if (this.userService.getUserByEmail(this.email.toLowerCase()) !== undefined)
       alert('Email already exists!');
     else {
       this.date = new Date(this.date).toLocaleDateString();
