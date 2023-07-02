@@ -57,6 +57,7 @@ export class CommentDetailComponent {
   }
 
   handleUpdateClick($event: Comment) {
+    this.commentObj.POSTID = Number($event.POSTID);
     this.commentObj.CONFIRMED = Boolean($event.CONFIRMED)
     this.CommentService.updateComment($event);
     this.Router.navigate(['/comment-list']);
