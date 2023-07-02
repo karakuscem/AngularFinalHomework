@@ -31,7 +31,6 @@ export class CommentListComponent {
       if (postId) {
         this.data = this.data.filter(comment => comment.POSTID === Number(postId));
       }
-      console.log(confirmed);
       if (confirmed) {
         this.data = this.data.filter(comment =>  Number(comment.CONFIRMED) === Number(confirmed));
       }
