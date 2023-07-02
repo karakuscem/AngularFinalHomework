@@ -45,7 +45,7 @@ export class UserManagementService {
       user.USERNAME = username;
       user.EMAIL = email;
       user.DATE = date;
-      user.ACTIVE = active;
+      user.ACTIVE = Boolean(active);
     }
     localStorage.setItem('users', JSON.stringify(this.users));
   }
