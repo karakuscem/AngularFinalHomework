@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-add.component.css']
 })
 export class UserAddComponent {
+  // Two-way binding için gerekli değişkenler
   username: string = '';
   email: string = '';
   isActive: boolean = true;
@@ -15,8 +16,10 @@ export class UserAddComponent {
   isSubmitted: boolean = false;
   isCancel: boolean = false;
 
+  // Servislerin inject edilmesi
   constructor(private userService: UserManagementService, private router: Router) { }
 
+  // Add butonuna tıklanınca yeni user eklenir
   handleAddUser(): void {
     if (this.username === '' || this.email === '' || this.date === '')
       alert('Please fill out all fields!');
@@ -36,6 +39,7 @@ export class UserAddComponent {
     }
   }
 
+  // Cancel butonuna tıklanınca user list sayfasına yönlendirilir
   handleCancel(): void {
     this.isCancel = true;
     setTimeout(() => {

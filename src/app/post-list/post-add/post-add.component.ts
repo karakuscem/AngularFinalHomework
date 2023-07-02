@@ -13,6 +13,10 @@ import { Category } from 'src/app/category/category';
   styleUrls: ['./post-add.component.css']
 })
 export class PostAddComponent {
+  // Servislerden gelen datalar
+  users: User[] = [];
+  categories: Category[] = [];
+  // Two-way binding için gerekli değişkenler
   title: string = '';
   views: number = 0;
   date: string = '';
@@ -20,9 +24,8 @@ export class PostAddComponent {
   userId: number = 0;
   categoryId: number = 0;
   content: string = '';
-  users: User[] = [];
-  categories: Category[] = [];
 
+  // Servislerin inject edilmesi
   constructor(
     private postService: PostService,
     private userManagementService: UserManagementService,
@@ -30,11 +33,13 @@ export class PostAddComponent {
     private router: Router
     ) { }
 
+  // Servislerden gelen dataların alınması
   ngOnInit(): void {
     this.users = this.userManagementService.getUsers();
     this.categories = this.categoryService.getCategories();
   }
 
+  // Post ekleme fonksiyonu
   addPost(): void {
     if (this.title === '' || this.date === '' || this.userId === 0 || this.categoryId === 0 || this.content === '')
       alert('Please fill in all fields!');
@@ -56,6 +61,7 @@ export class PostAddComponent {
     }
   }
 
+  // Post ekleme işlemini iptal etme fonksiyonu
   cancel(): void {
     this.router.navigate(['/post-list']);
   }

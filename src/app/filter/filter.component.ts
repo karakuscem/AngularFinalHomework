@@ -6,10 +6,11 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./filter.component.css']
 })
 export class FilterComponent {
+  // Parent'dan verilecek filtre seçenekleri
   @Input() filterOptions: string[] = [];
   filterBy: string = '';
   filterValue: string = '';
-
+  // Parent'a gönderilecek obje
   @Output() applyFilterEvent = new EventEmitter<any>();
   @Output() clearFilterEvent = new EventEmitter<any>();
 

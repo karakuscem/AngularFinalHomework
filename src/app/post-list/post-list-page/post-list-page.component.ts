@@ -11,16 +11,20 @@ import { CommentService } from 'src/app/comment/comment.service';
   styleUrls: ['./post-list-page.component.css']
 })
 export class PostListPageComponent {
+  // Tablo için gerekli değişkenler
   columns: string[] = ['POST ID', 'TITLE', 'VIEW', 'DATE', 'PUBLISHED', 'EDIT'];
   data: Post[] = [];
+  // Filtreleme için gerekli değişkenler
+  filterOptions: string[] = ["postId", "userId", "categoryId"];
+  // Two-way binding için gerekli değişkenler
   postId: number = 0;
   title: string = '';
   view: number = 0;
   date: string = '';
   published: boolean = false;
   placeHolderTitle: string = '';
-  filterOptions: string[] = ["postId", "userId", "categoryId"];
 
+  // Servislerin inject edilmesi ve ilk verilerin çekilmesi
   constructor(
     private postService: PostService,
     private router: Router,
@@ -34,26 +38,27 @@ export class PostListPageComponent {
     }
   }
 
-ngOnInit() {
-  this.route.queryParams.subscribe((params: Params) => {
-    const postId = params['postId'];
-    const userId = params['userId'];
-    const categoryId = params['categoryId'];
-    this.data = this.postService.getPosts();
+  // Sayfa yenilendiğinde query paramslar kontrol edilir ve filtreleme yapılır
+  ngOnInit() {
+    this.route.queryParams.subscribe((params: Params) => {
+      const postId = params['postId'];
+      const userId = params['userId'];
+      const categoryId = params['categoryId'];
+      this.data = this.postService.getPosts();
 
-    if (postId) {
-      this.data = this.data.filter(post => post.POSTID === Number(postId));
-    }
-    if (userId) {
-      this.data = this.data.filter(post => post.USERID === Number(userId));
-    }
-    if (categoryId) {
-      this.data = this.data.filter(post => post.CATEGORYID === Number(categoryId));
-    }
-  });
-}
+      if (postId) {
+        this.data = this.data.filter(post => post.POSTID === Number(postId));
+      }
+      if (userId) {
+        this.data = this.data.filter(post => post.USERID === Number(userId));
+      }
+      if (categoryId) {
+        this.data = this.data.filter(post => post.CATEGORYID === Number(categoryId));
+      }
+    });
+  }
 
-
+  // Tablodaki butonlara tıklanıldığında çalışan fonksiyonlar
   handleDeleteClick($event: number): void {
     if (this.commentService.getCommentsByPostID(Number($event)).length > 0)
       alert('You cannot delete a post with comments!');
@@ -70,6 +75,7 @@ ngOnInit() {
     this.router.navigate(['/post-list/', this.postId]);
   }
 
+  // Filtreleme için gerekli fonksiyonlar
   applyFilter(obj: any): void {
     if (obj.filterBy === 'postId') {
       this.router.navigate(['/post-list'], { queryParams: { postId: obj.filterValue } });

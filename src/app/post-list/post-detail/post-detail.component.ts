@@ -15,11 +15,13 @@ import { Comment } from 'src/app/comment/comment';
   styleUrls: ['./post-detail.component.css']
 })
 export class PostDetailComponent {
+  // Servisten gelen datalar için gerekli değişkenler
   posts: Post[] = [];
   users: User[] = [];
   categories: Category[] = [];
   comments: Comment[] = [];
   userComments: Comment[] = [];
+  // Post objesi
   postObj: Post = {
     POSTID: 0,
     TITLE: '',
@@ -30,10 +32,12 @@ export class PostDetailComponent {
     CATEGORYID: 0,
     CONTENT: ''
   };
+  // Postun yazarı ve kategorisi için gerekli değişkenler
   author: string = '';
   category: string = '';
   editMode: boolean = false;
 
+  // Servislerin ve route'un inject edilmesi
   constructor(
     private postService: PostService,
     private route: ActivatedRoute,
@@ -43,6 +47,7 @@ export class PostDetailComponent {
     private commentService: CommentService
     ) { }
 
+  // Params'dan gelen id'ye göre post, yazar ve kategori bilgilerinin alınması
   ngOnInit() {
     this.route.params.subscribe(params => {
       const id = params['id'];
@@ -57,10 +62,12 @@ export class PostDetailComponent {
     });
   }
 
+  // Edit mode'un açılması ve kapatılması
   editPost(): void {
     this.editMode = !this.editMode;
   }
 
+  // Post'un silinmesi
   deletePost(): void {
     if (this.commentService.getCommentsByPostID(Number(this.postObj.POSTID)).length > 0)
       alert('You cannot delete a post with comments!');
@@ -71,6 +78,7 @@ export class PostDetailComponent {
     }
   }
 
+  // Post'un güncellenmesi
   updatePost(): void {
     this.postObj.POSTID = Number(this.postObj.POSTID);
     this.postObj.CATEGORYID = Number(this.postObj.CATEGORYID);

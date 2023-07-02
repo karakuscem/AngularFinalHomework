@@ -10,10 +10,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./comment-list.component.css']
 })
 export class CommentListComponent {
+  // Tablo için kolon başlıkları
   columns: string[] = ['COMMENT ID', 'COMMENT', 'DATE', 'CONFIRMED', 'EDIT'];
   data: Comment[] = [];
+  // Filtreleme seçenekleri
   filterOptions: string[] = ['postId', 'confirmed'];
 
+  // Servislerin inject edilmesi ve ilk verilerin çekilmesi
   constructor(
     private commentService: CommentService,
     private Router: Router,
@@ -22,6 +25,7 @@ export class CommentListComponent {
     this.data = this.commentService.getComments();
   }
 
+  // Sayfa yenilendiğinde query paramslar kontrol edilir ve filtreleme yapılır
   ngOnInit() {
     this.ActivatedRoute.queryParams.subscribe(params => {
       const postId = params['postId'];
@@ -37,6 +41,7 @@ export class CommentListComponent {
     });
   }
 
+  // Filtreleme yapılması
   applyFilter(obj: any) {
     if (obj.filterBy === 'postId') {
       this.Router.navigate(['/comment-list'], { queryParams: { postId: obj.filterValue } });
@@ -46,11 +51,13 @@ export class CommentListComponent {
     }
   }
 
+  // Filtreleme alanlarının temizlenmesi
   clearFilter() {
     this.data = this.commentService.getComments();
     this.Router.navigate(['/comment-list']);
   }
 
+  // Delete butonuna basıldığında çalışır ve ilgili commenti siler
   handleDeleteClick($event: number) {
     if (confirm('Are you sure you want to delete this comment?')) {
       this.commentService.deleteComment(Number($event));
@@ -58,6 +65,7 @@ export class CommentListComponent {
     }
   }
 
+  // Detail butonuna basıldığında çalışır ve ilgili commentin detay sayfasına yönlendirir
   handleDetailClick($event: number) {
     this.Router.navigate(['/comment-list', $event]);
   }

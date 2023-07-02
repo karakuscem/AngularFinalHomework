@@ -14,6 +14,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class UserListPageComponent {
   columns: string[] = ['ID', 'USERNAME', 'EMAIL', 'DATE', 'ACTIVE', 'EDIT'];
   data: User[] = [];
+  filterOptions: string[] = ['userId', 'active'];
   editMode: boolean = false;
   userId: number = 0;
   username: string = '';
@@ -22,8 +23,8 @@ export class UserListPageComponent {
   active: boolean = false;
   placeHolderUsername: string = '';
   placeHolderEmail: string = '';
-  filterOptions: string[] = ['userId', 'active'];
 
+  // Servislerin inject edilmesi ve ilk verilerin çekilmesi
   constructor(
     private userService: UserManagementService,
     private postService: PostService,
@@ -38,6 +39,7 @@ export class UserListPageComponent {
     }
   }
 
+  // Sayfa yenilendiğinde query paramslar kontrol edilir ve filtreleme yapılır
   ngOnInit() {
     this.ActivatedRoute.queryParams.subscribe((params: Params) => {
       const userId = params['userId'];
@@ -53,6 +55,7 @@ export class UserListPageComponent {
     });
   }
 
+  // Delete'e tıklanınca verilen id'ye sahip user silinir
   handleDeleteClick($event: number): void {
     if (this.data.length === 1)
       alert('You cannot delete the last user!');
@@ -68,6 +71,7 @@ export class UserListPageComponent {
 
   }
 
+  // Edit'e tıklanınca form gösterilir, verilen id değişkende tutulur
   handleEditClick($event: number): void {
     this.editMode = true;
     this.userId = Number($event);
@@ -75,6 +79,7 @@ export class UserListPageComponent {
     this.placeHolderEmail = this.userService.getUserByID(this.userId)!.EMAIL.toUpperCase();
   }
 
+  // Cancel'a tıklandığında form temizlenir ve kapatılır
   handleCancelClick(): void {
     this.userId = 0;
     this.username = '';
@@ -84,6 +89,7 @@ export class UserListPageComponent {
     this.editMode = false;
   }
 
+  // Save'e tıklandığında formdaki veriler kontrol edilir ve güncelleme yapılır
   handleSaveClick(): void {
     if (this.username === '' || this.email === '' || this.date === '')
       alert('Please fill out all fields!');
@@ -102,6 +108,7 @@ export class UserListPageComponent {
     }
   }
 
+  // Filtre fonksiyonları
   applyFilter(obj: any) {
    if (obj.filterBy === 'userId')
       this.Router.navigate(['/user-list-page'], { queryParams: { userId: obj.filterValue } });
