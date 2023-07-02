@@ -63,6 +63,10 @@
     <select [(ngModel)]="postObj.USERID" name="userid">
         <option *ngFor="let user of users" [value]="user.ID">{{ user.USERNAME }}</option>
     </select>
+    <label for="categoryid">Category</label>
+    <select [(ngModel)]="postObj.CATEGORYID" name="categoryid">
+        <option *ngFor="let category of categories" [value]="category.CATEGORYID">{{ category.NAME }}</option>
+    </select>
     <button class="update-btn" (click)="updatePost()" type="button">Update</button>
 </form>
 
