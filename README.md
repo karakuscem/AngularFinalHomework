@@ -1,27 +1,53 @@
-# BlogManagement
+# Angular Blog Management Projesi
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0.
+Bu proje, Angular kullanarak geliştirdiğim bir blog yönetim uygulamasıdır. Uygulama, kullanıcı listesi, yorum listesi, gönderi listesi ve kategori listesi olmak üzere toplam 4 sayfadan oluşmaktadır. CategoryList haricindeki her sayfada filtreleme özelliği bulunmaktadır. Ayrıca her sayfada sayfa numaralandırması (pagination) vardır.
 
-## Development server
+## Özellikler
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Proje aşağıdaki özelliklere sahiptir:
 
-## Code scaffolding
+- Kullanıcı Listesi: Tüm kullanıcıları görüntüler ve kullanıcıları düzenlemenize veya silmenize olanak tanır.
+- Yorum Listesi: Tüm yorumları görüntüler ve yorumları düzenlemenize veya silmenize olanak tanır.
+- Gönderi Listesi: Tüm gönderileri görüntüler ve gönderileri düzenlemenize veya silmenize olanak tanır.
+- Kategori Listesi: Tüm kategorileri görüntüler ve kategorileri düzenlemenize veya silmenize olanak tanır.
+- Filtreleme: Kullanıcı Listesi, Yorum Listesi ve Gönderi Listesi sayfalarında farklı filtreleme seçenekleri bulunmaktadır.
+- Sayfalama: Tüm listeler sayfa numaralandırması (pagination) ile gösterilir.
+- Yeni Eleman Ekleme: Tüm listelere yeni kullanıcı, yorum, gönderi veya kategori ekleyebilirsiniz.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Önem Verilen Konular
 
-## Build
+Proje geliştirilirken önem verilen bazı konular şunlardır:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Bileşenlerin Tekrar Kullanılabilirliği: Kod tekrarını önlemek ve bileşenleri tekrar kullanmak için bileşenler düzenli bir şekilde oluşturulmuştur.
+- Input-Output Kullanımı: Bileşenler arasında veri iletişimi için @Input ve @Output dekoratörleri kullanılmıştır.
+- Servislerin Oluşturulması ve Enjekte Edilmesi: Verilerin yönetimi ve işlemleri için servisler oluşturulmuş ve bu servisler bileşenlere enjekte edilmiştir.
+- Directives Kullanımı: ngIf, ngFor gibi direktifler kullanılarak dinamik içerikler oluşturulmuştur.
+- Pipe Kullanımı: Sayfalarda istenen verileri düzenlemek için pipe'lar kullanılmıştır.
+- Array Fonksiyonları: map, filter, find gibi array fonksiyonları kullanılarak veri manipülasyonu yapılmıştır.
 
-## Running unit tests
+## Nasıl Başlatılır
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Projeyi klonlayın veya zip olarak indirin.
+2. Angular CLI yüklü değilse, yüklemek için aşağıdaki komutu çalıştırın:
 
-## Running end-to-end tests
+```terminal
+npm install -g @angular/cli
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+3. Proje dizinine gidin ve bağımlılıkları yüklemek için aşağıdaki komutu çalıştırın:
 
-## Further help
+```
+npm install
+```
+4. Geliştirme sunucusunu başlatmak için aşağıdaki komutu çalıştırın:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```
+ng serve
+```
+
+5. Tarayıcınızda `http://localhost:4200/` adresine giderek uygulamayı görebilirsiniz.
+
+## Katkı
+
+Her türlü katkıya açığım. Büyük değişiklikler için önce bir konu (issue) açmanızı öneririz, böylece tartışabiliriz.
+
