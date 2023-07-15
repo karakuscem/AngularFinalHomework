@@ -97,7 +97,7 @@
     color: var(--writeColor);
     border: none;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
     text-decoration: none;
 }
