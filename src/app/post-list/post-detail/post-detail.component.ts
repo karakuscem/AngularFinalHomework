@@ -83,6 +83,7 @@ export class PostDetailComponent {
     this.postObj.POSTID = Number(this.postObj.POSTID);
     this.postObj.CATEGORYID = Number(this.postObj.CATEGORYID);
     this.postObj.USERID = Number(this.postObj.USERID);
+    this.postObj.DATE = new Date(this.postObj.DATE).toLocaleDateString();
     this.postService.updatePost(this.postObj);
     this.author = this.users.find(user => user.ID === Number(this.postObj.USERID))!.USERNAME;
     this.editMode = false;
