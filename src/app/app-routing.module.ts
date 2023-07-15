@@ -11,10 +11,12 @@ import { CategoryAddComponent } from './category/category-add/category-add.compo
 import { CommentListComponent } from './comment/comment-list/comment-list.component';
 import { CommentDetailComponent } from './comment/comment-detail/comment-detail.component';
 import { CommentAddComponent } from './comment/comment-add/comment-add.component';
+import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/user-list-page', pathMatch: 'full'},
+  { path: 'home', component: HomeComponent},
+  { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: 'user-list-page', component: UserListPageComponent },
   { path: 'user-list-page/add', component: UserAddComponent},
   { path: 'post-list', component: PostListPageComponent },
