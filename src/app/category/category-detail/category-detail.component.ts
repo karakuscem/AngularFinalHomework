@@ -35,7 +35,7 @@ export class CategoryDetailComponent {
       this.popularityNumber = this.CategoryService.getCategoryRanking(Number(id));
     })
   }
-
+  // Kategori silinir
   handleDeleteClick($event: number): void {
     if (this.CategoryService.getCategories().length === 1)
       alert('You cannot delete the last category!');
@@ -47,7 +47,7 @@ export class CategoryDetailComponent {
       this.categories = this.CategoryService.getCategories();
     }
   }
-
+  // Kategori güncellenir
   handleSeePostsClick($event: number): void {
     this.router.navigateByUrl('/post-list?categoryId=' + $event);
   }

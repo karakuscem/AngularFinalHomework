@@ -13,11 +13,11 @@ export class FilterComponent {
   // Parent'a gönderilecek obje
   @Output() applyFilterEvent = new EventEmitter<any>();
   @Output() clearFilterEvent = new EventEmitter<any>();
-
+  // Filtreleme işlemi için objeyi parent'a gönderir.
   applyFilter(obj: any) {
     this.applyFilterEvent.emit(obj);
   }
-
+  // Filtreleme işlemi için objeyi parent'a gönderir.
   clearFilter() {
     this.filterBy = '';
     this.filterValue = '';

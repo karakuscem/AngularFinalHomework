@@ -23,7 +23,7 @@ export class CategoryListComponent {
     ){
     this.data = this.CategoryService.getCategories();
   }
-
+  // Delete'e tıklanınca ilgili kategori silinir
   handleDeleteClick($event: number): void {
     if (this.CategoryService.getCategories().length === 1)
       alert('You cannot delete the last category!');
@@ -35,24 +35,24 @@ export class CategoryListComponent {
       this.data = this.CategoryService.getCategories();
     }
   }
-
+  // Edit'e tıklanınca editMode açılır ve inputlara verileri aktarılır
   handleEditClick($event: number): void {
     this.editMode = !this.editMode;
     this.categoryId = $event;
   }
-
+   // Edit'e tıklanınca editMode açılır ve inputlara verileri aktarılır
   handleDetailClick($event: number): void {
     this.categoryId = Number($event);
     this.Router.navigate(['/category-list/', this.categoryId]);
   }
-
+  // Cancel'a tıklanınca editMode kapatılır ve inputlar temizlenir
   handleCancelClick(): void {
     this.categoryId = 0;
     this.categoryName = '';
     this.date = '';
     this.editMode = false;
   }
-
+  // Save'e tıklanınca verilen id'ye sahip user güncellenir
   handleSaveClick(): void {
     if (!this.CategoryService.checkUnique(this.categoryName, this.categoryId)) {
       alert('This category name is already taken!');

@@ -15,7 +15,7 @@ export class CategoryAddComponent {
     private categoryService: CategoryService,
     private router: Router
   ) {}
-
+  // 
   addCategory(): void {
     if (this.name === '' || this.date === '')
       alert('Please fill in all fields!');

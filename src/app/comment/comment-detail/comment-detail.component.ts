@@ -44,18 +44,18 @@ export class CommentDetailComponent {
     }
     );
   }
-
+  // Delete'e tıklanınca verilen id'ye sahip comment silinir
   handleDeleteClick($event: number) {
     if (confirm('Are you sure you want to delete this comment?')) {
       this.CommentService.deleteComment(Number($event));
       this.Router.navigate(['/comment-list']);
     }
   }
-
+  // Edit'e tıklanınca edit modu açılır
   handleEditClick() {
     this.editMode = !this.editMode;
   }
-
+  // Update'e tıklanınca comment güncellenir
   handleUpdateClick($event: Comment) {
     this.commentObj.POSTID = Number($event.POSTID);
     this.commentObj.CONFIRMED = (String($event.CONFIRMED) === 'true' ? true : false);

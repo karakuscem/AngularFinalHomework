@@ -28,10 +28,11 @@ export class CommentAddComponent {
   ) { }
 
   ngOnInit(): void {
+    // User ve post listesi alınır
     this.users = this.userManagementService.getUsers();
     this.posts = this.postService.getPosts();
   }
-
+  // Add butonuna tıklanınca yeni user eklenir
   addComment(): void {
     if (this.date === '' || this.userId === 0 || this.postId === 0 || this.comment === '')
       alert('Please fill in all fields!');
@@ -50,7 +51,7 @@ export class CommentAddComponent {
       this.router.navigate(['/comment-list']);
     }
   }
-
+  // Cancel butonuna tıklanınca comment listesine geri dönülür
   cancel(): void {
     this.router.navigate(['/comment-list']);
   }
