@@ -61,7 +61,7 @@ Proje geliştirilirken önem verilen bazı konular şunlardır:
 - Bileşenlerin Tekrar Kullanılabilirliği: Kod tekrarını önlemek ve bileşenleri tekrar kullanmak için bileşenler düzenli bir şekilde oluşturulmuştur.
 - Input-Output Kullanımı: Bileşenler arasında veri iletişimi için @Input ve @Output dekoratörleri kullanılmıştır.
 - Servislerin Oluşturulması ve Enjekte Edilmesi: Verilerin yönetimi ve işlemleri için servisler oluşturulmuş ve bu servisler bileşenlere enjekte edilmiştir.
-- Directives Kullanımı: ngIf, ngFor gibi direktifler kullanılarak dinamik içerikler oluşturulmuştur.
+- Binding Kullanımı: ngIf, ngFor gibi direktifler kullanılarak dinamik içerikler oluşturulmuştur.
 - Pipe Kullanımı: Sayfalarda istenen verileri düzenlemek için pipe'lar kullanılmıştır.
 - Array Fonksiyonları: map, filter, find gibi array fonksiyonları kullanılarak veri manipülasyonu yapılmıştır.
 
