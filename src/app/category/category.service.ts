@@ -44,18 +44,15 @@ export class CategoryService {
   }
 
   getCategoryByName(name: string): Category | undefined {
-    return this.categories.find((category) => category.NAME === name);
+    return this.categories.find((category) => category.NAME === name.toLowerCase());
   }
 
   editCategory(id: number, name: string, date: string)
   {
-    const editedCategory = this.getCategoryById(id);
-    if (editedCategory)
-    {
-      editedCategory.NAME = name;
-      editedCategory.DATE = new Date(date).toLocaleDateString();
-      localStorage.setItem('category', JSON.stringify(this.categories));
-    }
+    const editedCategory = this.getCategoryById(id)!;
+    editedCategory.NAME = name;
+    editedCategory.DATE = new Date(date).toLocaleDateString();
+    localStorage.setItem('category', JSON.stringify(this.categories));
   }
 
   postCount(id: number): number {
@@ -66,5 +63,11 @@ export class CategoryService {
     const sortedCategories = this.categories.sort((a, b) => this.postCount(b.CATEGORYID) - this.postCount(a.CATEGORYID));
     const categoryIndex = sortedCategories.findIndex((category) => category.CATEGORYID === id);
     return categoryIndex + 1;
+  }
+
+  checkUnique(name: string, id: number): boolean {
+    if (this.categories.find((category) => category.NAME.toLowerCase() === name.toLowerCase() && category.CATEGORYID !== id))
+      return false;
+    return true;
   }
 }

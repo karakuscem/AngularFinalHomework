@@ -1,6 +1,7 @@
 # Angular Blog Management Projesi
 
-Bu proje, Angular kullanarak geliştirdiğim bir blog yönetim uygulamasıdır. Uygulama, kullanıcı listesi, yorum listesi, gönderi listesi ve kategori listesi olmak üzere toplam 4 sayfadan oluşmaktadır. CategoryList haricindeki her sayfada filtreleme özelliği bulunmaktadır. Ayrıca her sayfada sayfa numaralandırması (pagination) vardır.
+Bu proje, Angular kullanarak geliştirdiğim bir blog yönetim uygulamasıdır. Uygulama, kullanıcı listesi, yorum listesi, gönderi listesi ve kategori listesi olmak üzere toplam 4 sayfadan oluşmaktadır. CategoryList haricindeki her sayfada filtreleme özelliği bulunmaktadır. Ayrıca her sayfada sayfa numaralandırması (pagination) vardır. Bu bir blog yönetim sistemi olduğundan ötürü, buradaki kullanıcının (yani adminin) veriler üzerinde tam kontrolü
+olması gerektiğini düşündüm. Bu yüzden her bir veriyi düzenlenebilir yaptım.
 
 ## Özellikler
 
@@ -13,6 +14,45 @@ Proje aşağıdaki özelliklere sahiptir:
 - Filtreleme: Kullanıcı Listesi, Yorum Listesi ve Gönderi Listesi sayfalarında farklı filtreleme seçenekleri bulunmaktadır.
 - Sayfalama: Tüm listeler sayfa numaralandırması (pagination) ile gösterilir.
 - Yeni Eleman Ekleme: Tüm listelere yeni kullanıcı, yorum, gönderi veya kategori ekleyebilirsiniz.
+- Local Storage kullanılarak oluşturulmuştur. Tüm veriler kullanıcın tarayıcısında saklanır böylece sayfa yenilendiğinde veriler kaybolmaz.
+- Yeni kategori eklerken veya var olan bir kategoriyi düzenlerken kategorinin eşsiz olmasının kontrolü yapılmıştır.
+- Yeni kullanıcı eklerken veya var olan bir kullanıcıyı düzenlerken kullanıcının eşsiz olmasının kontrolü yapılmıştır.
+
+## Local Storage Hakkında
+
+Local storage bazı verileri kullanıcın bilgisayarında depolamamızı sağlar. Local storage içerisinde beş adet fonksiyon bulundurur.
+
+- `setItem()`: `localStorage`'a key ve value olarak değer eklemenizi sağlar. Not : Local storage sadece string depolayabilir o yüzden başka türde bir veri depolayacaksınız eğer bunu string bir değere dönüştürmeniz lazım. Örneğin;
+
+``` javascript
+const userArray = ["Obaseki",25]
+localStorage.setItem('user', JSON.stringify(userArray));
+```
+
+- `getItem()`: `localStorage`'dan değerleri almamızı sağlar. Argüman olarak key değerini vermeniz gerekir. Not: Gelecek olan değer string şeklinde geleceği için bu değeri ayrıştırmak isteyebilirsiniz. Örnek;
+
+``` javascript
+const userData = JSON.parse(localStorage.getItem('user'));
+console.log(userData);
+```
+
+- `key()`: `localStorage`'dan verilen index'deki key'i getirmemizi sağlar. Örnek;
+
+``` javascript
+localStorage.key(index);
+```
+
+- `clear()`: `localStorage`'da var olan verileri temizlemenizi sağlar. Örnek;
+
+``` javascript
+localStorage.clear();
+```
+
+- `remove()`: `localStorage`'da verilen key'li veriyi silmenizi sağlar. Örnek;
+
+``` javascript
+localStorage.removeItem('name');
+```
 
 ## Önem Verilen Konular
 
@@ -36,12 +76,13 @@ npm install -g @angular/cli
 
 3. Proje dizinine gidin ve bağımlılıkları yüklemek için aşağıdaki komutu çalıştırın:
 
-```
+``` terminal
 npm install
 ```
+
 4. Geliştirme sunucusunu başlatmak için aşağıdaki komutu çalıştırın:
 
-```
+``` terminal
 ng serve
 ```
 
@@ -50,4 +91,3 @@ ng serve
 ## Katkı
 
 Her türlü katkıya açığım. Büyük değişiklikler için önce bir konu (issue) açmanızı öneririz, böylece tartışabiliriz.
-

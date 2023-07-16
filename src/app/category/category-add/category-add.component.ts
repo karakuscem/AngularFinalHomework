@@ -19,7 +19,7 @@ export class CategoryAddComponent {
   addCategory(): void {
     if (this.name === '' || this.date === '')
       alert('Please fill in all fields!');
-    else if (this.categoryService.getCategoryByName(this.name) !== undefined)
+    else if (this.categoryService.checkUnique(this.name, 0) === false)
       alert('This category already exists!');
     else
     {

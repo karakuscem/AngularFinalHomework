@@ -93,12 +93,8 @@ export class UserListPageComponent {
   handleSaveClick(): void {
     if (this.username === '' || this.email === '' || this.date === '')
       alert('Please fill out all fields!');
-    else if (this.userService.getUserByUsername(this.username.toLowerCase()) !== undefined
-     && this.userService.getUserByUsername(this.username.toLowerCase())!.ID !== this.userId)
-      alert('Username already exists!');
-    else if (this.userService.getUserByEmail(this.email.toLowerCase()) !== undefined
-     && this.userService.getUserByEmail(this.email.toLowerCase())!.ID !== this.userId)
-      alert('Email already exists!');
+    else if (this.userService.checkUnique(this.username, this.email, this.userId) === false)
+      alert('Username or email already exists!');
     else {
       this.date = new Date(this.date).toLocaleDateString();
       this.userService.updateUser(this.userId, this.username, this.email, this.date, this.active);

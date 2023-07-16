@@ -62,4 +62,15 @@ export class UserManagementService {
     this.users.push(user);
     localStorage.setItem('users', JSON.stringify(this.users));
   }
+
+  checkUnique(username: string, email: string, id: number): boolean {
+    if(this.users.find((user)=> user.USERNAME === username.toLowerCase()) !== undefined
+    && this.getUserByUsername(username.toLowerCase())!.ID !== id)
+      return false ;
+    else if (this.users.find((user)=>user.EMAIL === email.toLowerCase()) !== undefined
+    && this.getUserByEmail(email.toLowerCase())!.ID !== id)
+      return false ;
+    else
+      return true ;
+  }
 }

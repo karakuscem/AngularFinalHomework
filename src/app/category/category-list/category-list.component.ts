@@ -54,8 +54,12 @@ export class CategoryListComponent {
   }
 
   handleSaveClick(): void {
-    this.CategoryService.editCategory(Number(this.categoryId), this.categoryName, this.date)
-    this.data = this.CategoryService.getCategories();
-    this.handleCancelClick();
+    if (!this.CategoryService.checkUnique(this.categoryName, this.categoryId)) {
+      alert('This category name is already taken!');
+    } else {
+      this.CategoryService.editCategory(Number(this.categoryId), this.categoryName, this.date)
+      this.data = this.CategoryService.getCategories();
+      this.handleCancelClick();
+    }
   }
 }
