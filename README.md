@@ -90,4 +90,4 @@ ng serve
 
 ## Katkı
 
-Her türlü katkıya açığım. Büyük değişiklikler için önce bir konu (issue) açmanızı öneririz, böylece tartışabiliriz.
+Her türlü katkıya açığım. Büyük değişiklikler için önce bir konu (issue) açmanızı öneririm, böylece tartışabiliriz.
